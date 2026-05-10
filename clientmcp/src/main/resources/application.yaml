@@ -1,0 +1,49 @@
+server:
+  port: 8083
+  tomcat:
+    connection-timeout: 600000
+
+spring:
+  application:
+    name: mcp-client
+  mvc:
+    async:
+      request-timeout: 600000
+  ai:
+    ollama:
+      base-url: 'http://localhost:11434'
+      chat:
+        options:
+          model: 'llama3.2:1b'
+        #          model: 'llama3.1'
+        temperature: 0.0
+        max-tokens: 8192
+    mcp:
+      client:
+        request-timeout: 600000
+        type: ASYNC
+        initialized: true
+        toolcallback:
+          enabled: true
+        annotation-scanner:
+          enabled: true
+
+        sse:
+          connections:
+            #              mcp-server:
+            #                url: http://localhost:8082
+            #                sse-endpoint: /sse
+            mcpalfresco:
+              url: http://localhost:8086
+              sse-endpoint: /sse
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+logging:
+  level:
+    io:
+      modelcontextprotocol:
+        client: DEBUG
+        spec: DEBUG

@@ -1,0 +1,51 @@
+server:
+  port: 8086
+
+spring:
+  application:
+    name: mcpalfresco
+
+  
+# NOTE: important, we must uncomment the property below
+# for using in Claude Ai like Client
+# and stdio to avoid json mismatchedinput exception
+
+#  main:
+#    allow-circular-references: true
+#   banner-mode: off
+#     web-application-type: none  # This is not needed for WebMVC but for stdio
+#logging:
+#  pattern:
+#    console:
+#  file:
+#    name: ./logs/spring-boot-ai-mcpalfresco-server.log
+  
+  ai:
+    mcp:
+      server:
+        name: mcpalfresco
+        type: ASYNC   # or SYNC
+    #   request-timeout: 60
+        sse-endpoint: /sse
+        sse-message-endpoint: /mcp/message
+
+  # Ollama auto config
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        options:
+          temperature: 0
+    embedding:
+      ollama:
+        model: nomic-embed-text
+  
+  # Elasticsearch auto config
+#    vectorstore:
+#      elasticsearch:
+#        initialize-schema: true
+#        index-name: alfresco-ai-document-index
+#        dimensions: 768
+#        similarity: cosine
+#
+#  elasticsearch:
+#    uris: http://localhost:9200

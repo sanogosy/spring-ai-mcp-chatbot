@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: ai-framework
+  http:
+    client:
+      connect-timeout: 60s
+      read-timeout: 60s
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+  elasticsearch:
+    uris: http://localhost:9200
+
+  ai:
+    ollama:
+      base-url: http://localhost:11434
+      init:
+        pull-model-strategy: when_missing
+      chat:
+        options:
+#          model: qwen2.5       #only for text
+          model: llama3.2:1b   #only for text
+#          model: llava:latest   #handle text and image
+          temperature: 0.0
+      embedding:
+        options:
+          model: nomic-embed-text:latest
+    vectorstore:
+      elasticsearch:
+        initialize-schema: true
+        index-name: alfresco-ai-document-index
+        dimensions: 768
+#      chroma:
+#        initialize-schema: true
+#        collection-name: index_v1
+#        client:
+#          host: http://localhost
+#          port: 8000
+
+server:
+  port: 9999
+
+cors:
+  filter:
+    disabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

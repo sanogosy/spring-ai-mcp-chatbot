@@ -1,0 +1,19 @@
+include:
+  - elasticsearch.yaml
+  - ollama.yaml  # Add this line
+services:
+  alfresco-ai-framework:
+    image: alfresco-ai-framework
+    build: ../
+    environment:
+      - spring.elasticsearch.uris=${ELASTICSEARCH_URIS}
+      - spring.ai.ollama.base-url=${OLLAMA_BASE_URL}
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+      ollama:  # Add this dependency
+        condition: service_started
+    ports:
+      - "9999:9999"
+    volumes:
+      - C:\Users\ASUS\Desktop\stage_2025_2026\projects\architecture-spring-mcp-rag\alfresco-ai-framework\ai-rag-framework\alfrescoimages:/alfrescoimages
