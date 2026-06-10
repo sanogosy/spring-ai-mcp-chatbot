@@ -148,17 +148,18 @@ public class IngestionService {
                         byte[] data = byteArrayOutputStream.toByteArray();
                         media.add(imagePath);
                         // Process media content
-                        String msg = """
-                                Read every information into image.
-                                If possible generate a compact description that explains only what is visible.
-                                """;
-                        Resource imageResource = new ByteArrayResource(data);
-                        Media imageMedia = new Media(MimeType.valueOf("image/png"), imageResource);
-
-                        UserMessage um = new UserMessage(msg, imageMedia);
-                        String imageDescription = chatClient.prompt(new Prompt(um))
-                                .call()
-                                .content();
+//                        String msg = """
+//                                Read every information into image.
+//                                If possible generate a compact description that explains only what is visible.
+//                                """;
+//                        Resource imageResource = new ByteArrayResource(data);
+//                        Media imageMedia = new Media(MimeType.valueOf("image/png"), imageResource);
+//
+                        String imageDescription = "";
+//                        UserMessage um = new UserMessage(msg, imageMedia);
+//                        String imageDescription = chatClient.prompt(new Prompt(um))
+//                                .call()
+//                                .content();
 
                         System.out.println(imageDescription);
                         textContent = textContent + "\n" + "IMAGE : " + imagePath + "\n" + "Description of the image :\n" + imageDescription;

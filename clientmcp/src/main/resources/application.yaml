@@ -30,9 +30,9 @@ spring:
 
         sse:
           connections:
-            #              mcp-server:
-            #                url: http://localhost:8082
-            #                sse-endpoint: /sse
+            mcp-server:
+              url: http://localhost:8082
+              sse-endpoint: /sse
             mcpalfresco:
               url: http://localhost:8086
               sse-endpoint: /sse

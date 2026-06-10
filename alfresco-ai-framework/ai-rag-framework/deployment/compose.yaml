@@ -16,4 +16,4 @@ services:
     ports:
       - "9999:9999"
     volumes:
-      - C:\Users\ASUS\Desktop\stage_2025_2026\projects\architecture-spring-mcp-rag\alfresco-ai-framework\ai-rag-framework\alfrescoimages:/alfrescoimages
+      - C:\Users\ASUS\Desktop\applications_projects\tuto_rag\alfresco-ai-framework\ai-rag-framework\alfrescoimages:/alfrescoimages

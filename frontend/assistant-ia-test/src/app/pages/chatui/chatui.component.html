@@ -1,0 +1,51 @@
+<div class="chat-container">
+
+    <div class="chat-left">
+
+        <div class="input-row">
+            <input [(ngModel)]="question" type="text" placeholder="Posez votre question ..." class="chat-input">
+            <button class="ask-btn" (click)="askAgent()">Envoyer</button>
+        </div>
+
+        <div *ngIf="response" class="chat-bubble bot">
+            <markdown [data]="response"></markdown>
+            <!-- <pre>{{ response }}</pre> -->
+        </div>
+
+        <div *ngIf="sourcesDocs.length > 0" class="source-card">
+            <ul>
+                <li *ngFor="let doc of sourcesDocs">
+                    <a [href]="doc.path">{{ doc.title || doc.id }}</a>
+                </li>
+            </ul>
+        </div>
+        <div *ngIf="sourcesImgs.length > 0" class="source-card">
+            <h4>Images liées</h4>
+            <div class="image-grid">
+                <div *ngFor="let img of sourcesImgs" class="image-item">
+                    <a [href]="img.path" target="_blank">
+                        <img [src]="img.path" [alt]="img.description">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- End -->
+
+    <div class="col-md-4">
+
+        <form (ngSubmit)="onSubmit()" enctype="multipart/form-data" class="p-4 border rounded shadow-sm bg-light">
+            <div class="mb-3">
+                <label class="form-label">Document du fichier PDF</label>
+                <input type="file" class="form-control" (change)="onFileSelected($event)" accept="application/pdf">
+            </div>
+            <button type="submit" class="btn btn-primary w-100">
+                Envoyer
+            </button>
+        </form>
+
+    </div>
+    <!-- End upload -->
+
+</div>

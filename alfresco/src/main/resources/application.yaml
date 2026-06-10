@@ -37,7 +37,7 @@ spring:
           temperature: 0
     embedding:
       ollama:
-        model: nomic-embed-text
+        model: nomic-embed-text:latest
   
   # Elasticsearch auto config
 #    vectorstore:

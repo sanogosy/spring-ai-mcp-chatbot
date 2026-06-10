@@ -1,0 +1,66 @@
+<div class="chat-container">
+
+  <!-- LEFT PANEL -->
+  <div class="chat-left">
+
+    <!-- Question input -->
+    <div class="input-row">
+      <input [(ngModel)]="question" type="text" placeholder="Posez votre question..."
+             class="chat-input">
+      <button class="ask-btn" (click)="askAgent()">Envoyer</button>
+    </div>
+
+    <!-- Chat response bubble -->
+    <div *ngIf="response" class="chat-bubble bot">
+      <markdown [data]="response"></markdown>
+    </div>
+
+
+    <!-- je voudrais une architecture avec MCP RAG et Alfresco -->
+
+    <!-- Document sources -->
+    <div *ngIf="sourcesDocs.length > 0" class="source-card">
+      <h4>Documents liés</h4>
+      <ul>
+        <li *ngFor="let doc of sourcesDocs">
+          <a [href]="doc.path">{{ doc.title || doc.id }}</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Image sources -->
+    <div *ngIf="sourcesImgs.length > 0" class="source-card">
+      <h4>Images liées</h4>
+      <div class="image-grid">
+        <div *ngFor="let img of sourcesImgs" class="image-item">
+          <a [href]="img.path" target="_blank">
+            <img [src]="img.path" [alt]="img.description">
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- upload -->
+
+  <div class="col-md-4">
+      <form (ngSubmit)="onSubmit()" enctype="multipart/form-data" class="p-4 border rounded shadow-sm bg-light">
+
+          <div class="mb-3">
+              <label class="form-label">Documentation Fichier PDF</label>
+              <input type="file"
+                  class="form-control"
+                  (change)="onFileSelected($event)"
+                  accept="application/pdf">
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100">
+              Envoyer
+          </button>
+
+      </form>
+  </div>
+  <!-- end upload -->
+
+</div>

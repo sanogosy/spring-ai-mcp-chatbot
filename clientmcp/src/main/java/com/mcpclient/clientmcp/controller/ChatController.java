@@ -22,7 +22,7 @@ import java.nio.file.Paths;
 public class ChatController {
 
     private final MyAiAgent myAiAgent;
-    private final String IMAGE_DIR = "";
+    private final String IMAGE_DIR = "C:\\Users\\ASUS\\Desktop\\applications_projects\\tuto_rag\\alfresco-ai-framework\\ai-rag-framework\\alfrescoimages";
 
     @GetMapping(value = "/question")
     public Mono<String> ask(@RequestParam String question) {

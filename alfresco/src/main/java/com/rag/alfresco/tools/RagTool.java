@@ -15,7 +15,6 @@ import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.management.ObjectName;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -92,7 +91,7 @@ public class RagTool {
 
         }
         catch(Exception e) {
-            logger.error("Error hybrid search");
+            logger.error("Error hybrid search", e);
             return "{\"documents\": [],\"images\":[], \"message\": \"Erreur interne recherche hybride\"}";
         }
 
@@ -172,6 +171,7 @@ public class RagTool {
         }
         catch (Exception e) {
             logger.info("Erreur au niveau du Tool get-alfresco-informations", e.getMessage());
+            logger.info("Erreur exception: ", e);
             root.set("documents", mapper.createArrayNode());
             root.set("images", mapper.createArrayNode());
             root.put("message", "Erreur lors des recherches");
